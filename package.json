@@ -1,0 +1,26 @@
+{
+  "name": "factorio-ltn-calculator",
+  "version": "1.0.0",
+  "description": "Static web-based calculator for Factorio LTN Network IDs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vincentq/factorio-ltn-calculator.git"
+  },
+  "keywords": [
+    "factorio"
+  ],
+  "author": "vincentq",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/vincentq/factorio-ltn-calculator/issues"
+  },
+  "homepage": "https://github.com/vincentq/factorio-ltn-calculator#readme",
+  "devDependencies": {
+    "fancy-log": "^1.3.3",
+    "gulp": "^4.0.0"
+  }
+}
