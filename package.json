@@ -21,6 +21,9 @@
   "homepage": "https://github.com/vincentq/factorio-ltn-calculator#readme",
   "devDependencies": {
     "fancy-log": "^1.3.3",
-    "gulp": "^4.0.0"
+    "gulp": "^4.0.0",
+    "gulp-jshint": "^2.1.0",
+    "jshint": "^2.10.2",
+    "jshint-stylish": "^2.2.1"
   }
 }

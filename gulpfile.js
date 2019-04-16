@@ -1,9 +1,22 @@
 // grab our gulp packages
 var gulp  = require('gulp'),
-    log   = require('fancy-log');
+    log   = require('fancy-log'),
+    jshint = require('gulp-jshint');
 
-// create a default task and just log a message
+// configure the jshint task
+gulp.task('jshint', function() {
+  return gulp.src('src/js/**/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
+});
+
+// configure which files to watch and what tasks to use on file changes
+gulp.task('watch', function() {
+    log("Inside watch")
+  gulp.watch('src/js/**/*.js', gulp.series('jshint'));
+});
+
+// Default task stub
 gulp.task('default', function(cb) {
-  log('Gulp is running!')
-  cb()
+    cb();
 });
