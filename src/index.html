@@ -31,6 +31,10 @@
   <div class="starter-template">
     <h1>Factorio LTN Network ID calculator</h1>
     <p class="lead">This tool will calculate values for LTN Network IDs that can be entered into the input combinator.</p>
+<div class="mb-4">
+    <button type="button" class="btn btn-secondary ltn-select-all mr-2">Select All</button> 
+    <button type="button" class="btn btn-secondary ltn-select-none">Select None</button>
+</div>
 <div class="d-flex flex-wrap justify-content-center">
 <div class="btn-toolbar">
   <div class="btn-group mr-2 mb-2" role="group">
@@ -88,14 +92,63 @@
     <button type="button" data-toggle="button" class="btn btn-outline-primary">32</button>
   </div>
 </div>
-  </div>
+  </div><!-- button group -->
+  <p>Network ID value: <strong style="font-size: 200%" class="result-decimal">0</strong></p>
+  <p class="small result-hex">0000 0000</p>
+  <p class="hidden zero-note"><em>A network ID of zero or an unset value results in default behaviour where the station is in every network. </em></p>
 </div>
 </main><!-- /.container -->
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <script>
+        $(document).ready(function() {
+            
+            var ltnCalc = function() {
+                $(".result-decimal").hide();
+                setTimeout(function() {
+                    console.log("Calculating");
+                    var networkID = 0;
+                    $(".btn-toolbar button").each(function() {
+                       if ($(this).hasClass("active")) {
+                           console.log(parseInt($(this).text()));
+                           networkID += Math.pow(2,parseInt($(this).text())-1);
+                       } 
+                    });
+                    $(".result-decimal").text(uintToInt(networkID, 32));
+                    var hex = networkID.toString(16).padStart(8,'0')
+                    $(".result-hex").text(hex.substring(0,4)+" "+hex.substring(4));
+                    $(".result-decimal").show(100);
+                    if (networkID == 0) {
+                        $(".zero-note").show();
+                    } else {
+                        $(".zero-note").hide();
+                }
+                });
+            }
+            
+            $(".btn").on('click',ltnCalc);
+            
+            $(".ltn-select-all").click(function() {
+               $(".btn-toolbar button").addClass("active"); 
+            });
+            $(".ltn-select-none").click(function() {
+               $(".btn-toolbar button").removeClass("active"); 
+            });
+            
+            ltnCalc();
+        });
+        
+        function uintToInt(uint, nbit) {
+            nbit = +nbit || 32;
+            if (nbit > 32) throw new RangeError('uintToInt only supports ints up to 32 bits');
+            uint <<= 32 - nbit;
+            uint >>= 32 - nbit;
+            return uint;
+        }
+    </script>
   </body>
 </html>
