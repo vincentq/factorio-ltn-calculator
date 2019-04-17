@@ -1,7 +1,9 @@
 // grab our gulp packages
 var gulp  = require('gulp'),
+    del   = require('del'),
     log   = require('fancy-log'),
-    jshint = require('gulp-jshint');
+    jshint = require('gulp-jshint'),
+    htmlmin = require('gulp-htmlmin');
 
 // configure the jshint task
 gulp.task('jshint', function() {
@@ -21,6 +23,21 @@ gulp.task('default', function(cb) {
     cb();
 });
 
-gulp.task('build', function(cb) {
-    cb(); // stub for build
+
+gulp.task('html', () => {
+  return gulp.src('src/*.html')
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(gulp.dest('dist'));
 });
+
+gulp.task('css', function () {
+  return gulp.src('src/css/*.css')
+    .pipe(gulp.dest('dist/css/'));
+});
+
+gulp.task('clean', function() {
+    return del(['dist/**/*']);
+});
+
+
+gulp.task('build', gulp.series('clean','css','html'));
