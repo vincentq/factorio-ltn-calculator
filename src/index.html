@@ -105,8 +105,8 @@
     <button type="button" class="btn btn-secondary ltn-select-none mr-2">Select None</button>
     <button type="button" class="btn btn-secondary ltn-invert">Invert Selection</button>
 </div>
-  <p>Network ID value: <strong style="font-size: 200%" class="result-decimal">0</strong></p>
-  <p class="small result-hex">0000 0000</p> 
+  <p>Network ID value: <strong style="font-size: 200%" class="result-decimal">0</strong> <small>(<span class="result-hex">0000 0000</span>)</small></p>
+  
   <p class="hidden zero-note"><em>A network ID of zero or an unset value results in default behaviour where the station is in every network (same as network ID of -1). </em></p>
 </div>
 </main><!-- /.container -->
@@ -160,6 +160,12 @@
             });
             $(".ltn-select-none").click(function() {
                $(".btn-toolbar button").removeClass("active"); 
+            });
+            $(".ltn-invert").click(function() {
+               $(".btn-toolbar button").each(function() {
+                    if($(this).hasClass("active")) $(this).removeClass("active");
+                    else $(this).addClass("active");
+                });
             });
             
             ltnCalc();
