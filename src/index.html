@@ -37,13 +37,14 @@
 
   <div class="starter-template">
     <h1>Factorio LTN Network ID calculator</h1>
-    <p class="lead">This tool will calculate values for LTN Network IDs that can be entered into the input combinator.</p>
-
+    <p class="lead">This tool will calculate encoded values for LTN Network IDs that can be entered into the input combinator.</p>
+    <p><strong>What does this mean?</strong> Train stations in Factorio's <a href="https://mods.factorio.com/mods/Optera/LogisticTrainNetwork">LTN mod</a> accept an encoded Network ID value that allows the station to be assigned to one of 32 networks.
+    This tool will calculate network IDs for any combination of the 32 networks, and will also decode any network IDs provided.</p>
     <div class="form-inline d-flex justify-content-center">
     <div class="input-group mb-4">
       <input type="text" class="form-control calc-value" placeholder="Enter network ID" aria-label="Network ID" aria-describedby="basic-addon2">
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary calc-button" type="button">Calculate</button>
+        <button class="btn btn-outline-secondary calc-button" type="button">Decode</button>
       </div>
      </div>
     </div>
