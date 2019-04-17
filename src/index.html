@@ -31,6 +31,17 @@
   <div class="starter-template">
     <h1>Factorio LTN Network ID calculator</h1>
     <p class="lead">This tool will calculate values for LTN Network IDs that can be entered into the input combinator.</p>
+
+    
+    <div class=""><div class="form-inline d-flex justify-content-center">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control calc-value" placeholder="Enter network ID" aria-label="Network ID" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calc-button" type="button">Calculate</button>
+      </div>
+     </div>
+     </div>
+    </div>
 <div class="mb-4">
     <button type="button" class="btn btn-secondary ltn-select-all mr-2">Select All</button> 
     <button type="button" class="btn btn-secondary ltn-select-none">Select None</button>
@@ -94,8 +105,8 @@
 </div>
   </div><!-- button group -->
   <p>Network ID value: <strong style="font-size: 200%" class="result-decimal">0</strong></p>
-  <p class="small result-hex">0000 0000</p>
-  <p class="hidden zero-note"><em>A network ID of zero or an unset value results in default behaviour where the station is in every network. </em></p>
+  <p class="small result-hex">0000 0000</p> 
+  <p class="hidden zero-note"><em>A network ID of zero or an unset value results in default behaviour where the station is in every network (same as network ID of -1). </em></p>
 </div>
 </main><!-- /.container -->
     <!-- Optional JavaScript -->
@@ -129,6 +140,19 @@
                 }
                 });
             }
+            
+            $(".calc-button").click(function() {
+                var calcValue = parseInt($(".calc-value").val());
+                if (isNaN(calcValue)) return;
+                $(".btn-toolbar button").removeClass("active"); 
+                $(".btn-toolbar button").each(function() {
+                    var pos = parseInt($(this).text());
+                    $(this).removeClass("active");
+                    if (Math.pow(2,pos-1) & calcValue) {
+                        $(this).addClass("active");
+                    }
+                });
+            })
             
             $(".btn").on('click',ltnCalc);
             
