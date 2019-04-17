@@ -20,3 +20,7 @@ gulp.task('watch', function() {
 gulp.task('default', function(cb) {
     cb();
 });
+
+gulp.task('build', function(cb) {
+    cb(); // stub for build
+});
