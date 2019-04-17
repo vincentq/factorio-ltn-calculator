@@ -120,12 +120,10 @@
             
             var ltnCalc = function() {
                 $(".result-decimal").hide();
-                setTimeout(function() {
-                    console.log("Calculating");
+                setTimeout(function() { // This is needed because the click handler seems to fire before Bootstrap toggle changes the active state
                     var networkID = 0;
                     $(".btn-toolbar button").each(function() {
                        if ($(this).hasClass("active")) {
-                           console.log(parseInt($(this).text()));
                            networkID += Math.pow(2,parseInt($(this).text())-1);
                        } 
                     });
