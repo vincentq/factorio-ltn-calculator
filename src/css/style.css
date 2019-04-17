@@ -5,3 +5,7 @@ body {
   padding: 3rem 1.5rem;
   text-align: center;
 }
+    
+.btn-toolbar button {
+    min-width: 3em;
+}
