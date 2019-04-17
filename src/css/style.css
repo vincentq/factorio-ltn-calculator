@@ -9,3 +9,8 @@ body {
 .btn-toolbar button {
     min-width: 3em;
 }
+
+.btn-toolbar button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
